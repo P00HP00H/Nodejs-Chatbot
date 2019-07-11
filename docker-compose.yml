@@ -1,0 +1,19 @@
+version: '2'
+volumes:
+  pooh_bus_db: {}
+
+services:
+  node:
+    image: node:9
+    command: bash -c "while true; do sleep 1000; done;"
+    ports:
+      - "4000:8000"
+      - "4222:22"
+  db:
+    image: mongo
+    ports:
+      - "27017:27017"
+    #environment:
+    #  - MYSQL_ROOT_PASSWORD=dd1234
+    volumes:
+      - pooh_bus_db:/data
