@@ -47,6 +47,7 @@ bus_time.fetch = function() {
                                     if (bus_time_hour == "-") {
                                         return true     // for문의 continue 개념
                                     }
+                                    // 따로 mongodb를 create하지 않아도 그냥 insert하면 저절로 db가 create됨
                                     if (bus_time_hour == "08") {
                                         location_week.insert({bus_08: bus_time}).then(function (results) {
                                             console.log('Promise Based Insert Result(resolved) : ', results);
