@@ -13,7 +13,5 @@ services:
     image: mongo
     ports:
       - "27017:27017"
-    #environment:
-    #  - MYSQL_ROOT_PASSWORD=dd1234
     volumes:
       - pooh_bus_db:/data
