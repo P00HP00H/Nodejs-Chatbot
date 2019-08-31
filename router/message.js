@@ -372,8 +372,8 @@ router.post('/', function (req, res) {
             break;
 
         case '조치원역 -> 학교정문':
-            check = 1;
-            station = 1;
+            button_check = 1;
+            station_check = 1;
             if(sunday_check == 1){
                 data = {
                     'keyboard': {
