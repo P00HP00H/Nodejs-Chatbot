@@ -18,7 +18,27 @@ var stat_weekday_bus_time = new Array();
 var univ_weekend_bus_time = new Array();
 var stat_weekend_bus_time = new Array();
 
-function bus_time(location_week, callback) {
+function bus_time(location_week) {
+    // Promise를 통해 8시 시간표부터 먼저 DB에 저장해야만 9시 시간표를 저장할 수 있고,
+    // 9시 시간표를 먼저 DB에 저장해야 10시 시간표를 저장할 수 있게 함 -> 이후 시간표들도 마찬가지
+    mongo_distinct_fetch(location_week, 8, bus_weekday2)
+        .then(mongo_distinct_fetch(location_week, 9, bus_weekday2))
+        .then(mongo_distinct_fetch(location_week, 10, bus_weekday2))
+        .then(mongo_distinct_fetch(location_week, 11, bus_weekday2))
+        .then(mongo_distinct_fetch(location_week, 12, bus_weekday2))
+        .then(mongo_distinct_fetch(location_week, 13, bus_weekday2))
+        .then(mongo_distinct_fetch(location_week, 14, bus_weekday2))
+        .then(mongo_distinct_fetch(location_week, 15, bus_weekday2))
+        .then(mongo_distinct_fetch(location_week, 16, bus_weekday2))
+        .then(mongo_distinct_fetch(location_week, 17, bus_weekday2))
+        .then(mongo_distinct_fetch(location_week, 18, bus_weekday2))
+        .then(mongo_distinct_fetch(location_week, 19, bus_weekday2))
+        .then(mongo_distinct_fetch(location_week, 20, bus_weekday2))
+        .then(mongo_distinct_fetch(location_week, 21, bus_weekday2))
+        .then(mongo_distinct_fetch(location_week, 22, bus_weekday2));
+}
+
+function mongo_distinct_fetch(location_week, num, callback){
     if (location_week == univ_weekday) {
         var location_week_check = 0;    // location_week_check = 0 -> univ_weekday, location_week_check = 1 -> stat_weekday
     }
@@ -31,171 +51,31 @@ function bus_time(location_week, callback) {
     else if (location_week == stat_weekend) {
         var location_week_check = 3;
     }
-
-    // db랑 연동해서 그런지 for문으로는 안되네요...(db가 결과값을 반환할 때까지 기다려주지않음) ㅠㅠ
-    location_week.distinct("bus_08", (function (err, docs) {
-        if (err) {
-            console.log('err');
-        }
-        else {
-            callback(location_week_check, docs, 0, bus_weekday2);
-        }
-    }));
-
-    location_week.distinct("bus_09", (function (err, docs) {
-        if (err) {
-            console.log('err');
-        }
-        else {
-            callback(location_week_check, docs, 1, bus_weekday2);
-        }
-    }));
-
-    location_week.distinct("bus_10", (function (err, docs) {
-        if (err) {
-            console.log('err');
-        }
-        else {
-            callback(location_week_check, docs, 2, bus_weekday2);
-        }
-    }));
-
-    location_week.distinct("bus_11", (function (err, docs) {
-        if (err) {
-            console.log('err');
-        }
-        else {
-            callback(location_week_check, docs, 3, bus_weekday2);
-        }
-    }));
-
-    location_week.distinct("bus_12", (function (err, docs) {
-        if (err) {
-            console.log('err');
-        }
-        else {
-            callback(location_week_check, docs, 4, bus_weekday2);
-        }
-    }));
-
-    location_week.distinct("bus_13", (function (err, docs) {
-        if (err) {
-            console.log('err');
-        }
-        else {
-            callback(location_week_check, docs, 5, bus_weekday2);
-        }
-    }));
-
-    location_week.distinct("bus_14", (function (err, docs) {
-        if (err) {
-            console.log('err');
-        }
-        else {
-            callback(location_week_check, docs, 6, bus_weekday2);
-        }
-    }));
-
-    location_week.distinct("bus_15", (function (err, docs) {
-        if (err) {
-            console.log('err');
-        }
-        else {
-            callback(location_week_check, docs, 7, bus_weekday2);
-        }
-    }));
-
-    location_week.distinct("bus_16", (function (err, docs) {
-        if (err) {
-            console.log('err');
-        }
-        else {
-            callback(location_week_check, docs, 8, bus_weekday2);
-        }
-    }));
-
-    location_week.distinct("bus_17", (function (err, docs) {
-        if (err) {
-            console.log('err');
-        }
-        else {
-            callback(location_week_check, docs, 9, bus_weekday2);
-        }
-    }));
-
-    location_week.distinct("bus_18", (function (err, docs) {
-        if (err) {
-            console.log('err');
-        }
-        else {
-            callback(location_week_check, docs, 10, bus_weekday2);
-        }
-    }));
-
-    location_week.distinct("bus_19", (function (err, docs) {
-        if (err) {
-            console.log('err');
-        }
-        else {
-            callback(location_week_check, docs, 11, bus_weekday2);
-        }
-    }));
-
-    location_week.distinct("bus_20", (function (err, docs) {
-        if (err) {
-            console.log('err');
-        }
-        else {
-            callback(location_week_check, docs, 12, bus_weekday2);
-        }
-    }));
-
-    location_week.distinct("bus_21", (function (err, docs) {
-        if (err) {
-            console.log('err');
-        }
-        else {
-            callback(location_week_check, docs, 13, bus_weekday2);
-        }
-    }));
-
-    location_week.distinct("bus_22", (function (err, docs) {
-        if (err) {
-            console.log('err');
-        }
-        else {
-            callback(location_week_check, docs, 14, bus_weekday2);
-        }
-    }));
-
-    /*
-    //  여기가 for문으로 짠 코드입니다.
-    for (var i = 8; i <= 22; i++) {
-        if (i < 10) {
-            location_week.distinct("bus_0" + i, (function (err, docs) {
+    return new Promise((resolve, reject) => {
+        if (num < 10) {
+            location_week.distinct("bus_0" + num, (function (err, docs) {
                 if (err) {
                     console.log('err');
                 }
                 else {
-                    callback(location_week_check, docs, i-8, bus_weekday2);
+                    resolve(callback(location_week_check, docs, num-8));
                 }
             }));
         }
         else {
-            location_week.distinct("bus_" + i, (function (err, docs) {
+            location_week.distinct("bus_" + num, (function (err, docs) {
                 if (err) {
                     console.log('err');
                 }
                 else {
-                    callback(location_week_check, docs, i-8, bus_weekday2);
+                    resolve(callback(location_week_check, docs, num-8));
                 }
             }));
         }
-    }*/
+    });
 }
 
 function bus_weekday2(check_num, res, arr_num){
-    console.log('콜백함수 실행');
     var result = '';
     if(check_num == 0) {        // check_num = 0 -> univ_weekday
         if(res.length == 0){
@@ -214,7 +94,7 @@ function bus_weekday2(check_num, res, arr_num){
                     result = result.concat(res[i] + '\n');
                 }
             }
-            setTimeout(function () {        // result값 처리된 후 배열에 집어넣기 위함
+            setTimeout(function () {        // result값 처리된 후 배열에 집어넣기 위해 setTimeout 이용
                 univ_weekday_bus_time[arr_num] = result;
             }, 500);
         }
@@ -289,17 +169,16 @@ function bus_weekday2(check_num, res, arr_num){
     }
 }
 
-
 router.post('/', function (req, res) {
     var msg = req.body.content;
     var data = {};
     console.log('전달받은 메시지 : ' + msg);
     if(array_check == 0){       // 맨 처음 버튼을 누른 경우 딱 한 번 실행
         array_check++;
-        bus_time(univ_weekday, bus_weekday2);
-        bus_time(stat_weekday, bus_weekday2);
-        bus_time(univ_weekend, bus_weekday2);
-        bus_time(stat_weekend, bus_weekday2);
+        bus_time(univ_weekday);
+        bus_time(stat_weekday);
+        bus_time(univ_weekend);
+        bus_time(stat_weekend);
     }
 
     switch (msg) {
