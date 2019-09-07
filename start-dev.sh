@@ -1,2 +1,2 @@
-./home/node.sh
-node /home/app.js
+./node.sh > log.txt
+node app.js &
