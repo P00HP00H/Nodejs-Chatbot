@@ -8,6 +8,7 @@ var stat_weekend = db.collection('station_weekend');
 var univ_weekday = db.collection('university_weekday');
 var stat_weekday = db.collection('station_weekday');
 
+/* 각 버스 시간표들이 저장될 배열 */
 var univ_weekday_bus_time = new Array();
 var stat_weekday_bus_time = new Array();
 var univ_weekend_bus_time = new Array();
