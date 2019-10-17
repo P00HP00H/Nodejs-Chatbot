@@ -8,7 +8,7 @@ var univ_weekday = db.collection('university_weekday');   // 평일 [학교정�
 var stat_weekday = db.collection('station_weekday');      // 평일 [조치원역 -> 학교정문] 시간표
 var univ_weekend = db.collection('university_weekend');   // 일요일 [학교정문 -> 조치원역] 시간표
 var stat_weekend = db.collection('station_weekend');      // 일요일 [조치원역 -> 학교정문] 시간표
-var bus_crawling_Router = require('./bus_crawling');      // bus_crawling 모듈을 불러옴
+var bus_time_array_Router = require('./bus_time_array');      // bus_crawling 모듈을 불러옴
 
 var button_check = 0;
 var sunday_check = 0;
@@ -21,10 +21,10 @@ router.post('/', function (req, res) {
     console.log('전달받은 메시지 : ' + msg);
     if(array_check == 0){       // 맨 처음 버튼을 누른 경우 딱 한 번 실행
         array_check++;
-        bus_crawling_Router.insert1(univ_weekday);      // bus_crawling 모듈의 함수 실행
-        bus_crawling_Router.insert1(stat_weekday);
-        bus_crawling_Router.insert1(univ_weekend);
-        bus_crawling_Router.insert1(stat_weekend);
+        bus_time_array_Router.insert1(univ_weekday);      // bus_crawling 모듈의 함수 실행
+        bus_time_array_Router.insert1(stat_weekday);
+        bus_time_array_Router.insert1(univ_weekend);
+        bus_time_array_Router.insert1(stat_weekend);
     }
 
     switch (msg) {
@@ -323,7 +323,7 @@ router.post('/', function (req, res) {
                         'buttons': ['08시', '09시', '10시', '11시', '뒤로']
                     },
                     'message': {
-                        'text': bus_crawling_Router.univ_weekday_bus_time[0]    // bus_crawling 모듈의 데이터 불러오기
+                        'text': bus_time_array_Router.univ_weekday_bus_time[0]    // bus_time_array 모듈의 데이터 불러오기
                     }
                 }
             }
@@ -334,7 +334,7 @@ router.post('/', function (req, res) {
                         'buttons': ['08시', '09시', '10시', '11시', '뒤로']
                     },
                     'message': {
-                        'text': bus_crawling_Router.stat_weekday_bus_time[0]
+                        'text': bus_time_array_Router.stat_weekday_bus_time[0]
                     }
                 }
             }
@@ -345,7 +345,7 @@ router.post('/', function (req, res) {
                         'buttons': ['08시', '09시', '10시', '11시', '뒤로']
                     },
                     'message': {
-                        'text': bus_crawling_Router.univ_weekend_bus_time[0]
+                        'text': bus_time_array_Router.univ_weekend_bus_time[0]
                     }
                 }
             }
@@ -356,7 +356,7 @@ router.post('/', function (req, res) {
                         'buttons': ['08시', '09시', '10시', '11시', '뒤로']
                     },
                     'message': {
-                        'text': bus_crawling_Router.stat_weekend_bus_time[0]
+                        'text': bus_time_array_Router.stat_weekend_bus_time[0]
                     }
                 }
             }
@@ -370,7 +370,7 @@ router.post('/', function (req, res) {
                         'buttons': ['08시', '09시', '10시', '11시', '뒤로']
                     },
                     'message': {
-                        'text': bus_crawling_Router.univ_weekday_bus_time[1]
+                        'text': bus_time_array_Router.univ_weekday_bus_time[1]
                     }
                 }
             }
@@ -381,7 +381,7 @@ router.post('/', function (req, res) {
                         'buttons': ['08시', '09시', '10시', '11시', '뒤로']
                     },
                     'message': {
-                        'text': bus_crawling_Router.stat_weekday_bus_time[1]
+                        'text': bus_time_array_Router.stat_weekday_bus_time[1]
                     }
                 }
             }
@@ -392,7 +392,7 @@ router.post('/', function (req, res) {
                         'buttons': ['08시', '09시', '10시', '11시', '뒤로']
                     },
                     'message': {
-                        'text': bus_crawling_Router.univ_weekend_bus_time[1]
+                        'text': bus_time_array_Router.univ_weekend_bus_time[1]
                     }
                 }
             }
@@ -403,7 +403,7 @@ router.post('/', function (req, res) {
                         'buttons': ['08시', '09시', '10시', '11시', '뒤로']
                     },
                     'message': {
-                        'text': bus_crawling_Router.stat_weekend_bus_time[1]
+                        'text': bus_time_array_Router.stat_weekend_bus_time[1]
                     }
                 }
             }
@@ -417,7 +417,7 @@ router.post('/', function (req, res) {
                         'buttons': ['08시', '09시', '10시', '11시', '뒤로']
                     },
                     'message': {
-                        'text': bus_crawling_Router.univ_weekday_bus_time[2]
+                        'text': bus_time_array_Router.univ_weekday_bus_time[2]
                     }
                 }
             }
@@ -428,7 +428,7 @@ router.post('/', function (req, res) {
                         'buttons': ['08시', '09시', '10시', '11시', '뒤로']
                     },
                     'message': {
-                        'text': bus_crawling_Router.stat_weekday_bus_time[2]
+                        'text': bus_time_array_Router.stat_weekday_bus_time[2]
                     }
                 }
             }
@@ -439,7 +439,7 @@ router.post('/', function (req, res) {
                         'buttons': ['08시', '09시', '10시', '11시', '뒤로']
                     },
                     'message': {
-                        'text': bus_crawling_Router.univ_weekend_bus_time[2]
+                        'text': bus_time_array_Router.univ_weekend_bus_time[2]
                     }
                 }
             }
@@ -450,7 +450,7 @@ router.post('/', function (req, res) {
                         'buttons': ['08시', '09시', '10시', '11시', '뒤로']
                     },
                     'message': {
-                        'text': bus_crawling_Router.stat_weekend_bus_time[2]
+                        'text': bus_time_array_Router.stat_weekend_bus_time[2]
                     }
                 }
             }
@@ -464,7 +464,7 @@ router.post('/', function (req, res) {
                         'buttons': ['08시', '09시', '10시', '11시', '뒤로']
                     },
                     'message': {
-                        'text': bus_crawling_Router.univ_weekday_bus_time[3]
+                        'text': bus_time_array_Router.univ_weekday_bus_time[3]
                     }
                 }
             }
@@ -475,7 +475,7 @@ router.post('/', function (req, res) {
                         'buttons': ['08시', '09시', '10시', '11시', '뒤로']
                     },
                     'message': {
-                        'text': bus_crawling_Router.stat_weekday_bus_time[3]
+                        'text': bus_time_array_Router.stat_weekday_bus_time[3]
                     }
                 }
             }
@@ -486,7 +486,7 @@ router.post('/', function (req, res) {
                         'buttons': ['08시', '09시', '10시', '11시', '뒤로']
                     },
                     'message': {
-                        'text': bus_crawling_Router.univ_weekend_bus_time[3]
+                        'text': bus_time_array_Router.univ_weekend_bus_time[3]
                     }
                 }
             }
@@ -497,7 +497,7 @@ router.post('/', function (req, res) {
                         'buttons': ['08시', '09시', '10시', '11시', '뒤로']
                     },
                     'message': {
-                        'text': bus_crawling_Router.stat_weekend_bus_time[3]
+                        'text': bus_time_array_Router.stat_weekend_bus_time[3]
                     }
                 }
             }
@@ -511,7 +511,7 @@ router.post('/', function (req, res) {
                         'buttons': ['12시', '13시', '14시', '15시', '뒤로']
                     },
                     'message': {
-                        'text': bus_crawling_Router.univ_weekday_bus_time[4]
+                        'text': bus_time_array_Router.univ_weekday_bus_time[4]
                     }
                 }
             }
@@ -522,7 +522,7 @@ router.post('/', function (req, res) {
                         'buttons': ['12시', '13시', '14시', '15시', '뒤로']
                     },
                     'message': {
-                        'text': bus_crawling_Router.stat_weekday_bus_time[4]
+                        'text': bus_time_array_Router.stat_weekday_bus_time[4]
                     }
                 }
             }
@@ -533,7 +533,7 @@ router.post('/', function (req, res) {
                         'buttons': ['12시', '13시', '14시', '15시', '뒤로']
                     },
                     'message': {
-                        'text': bus_crawling_Router.univ_weekend_bus_time[4]
+                        'text': bus_time_array_Router.univ_weekend_bus_time[4]
                     }
                 }
             }
@@ -544,7 +544,7 @@ router.post('/', function (req, res) {
                         'buttons': ['12시', '13시', '14시', '15시', '뒤로']
                     },
                     'message': {
-                        'text': bus_crawling_Router.stat_weekend_bus_time[4]
+                        'text': bus_time_array_Router.stat_weekend_bus_time[4]
                     }
                 }
             }
@@ -558,7 +558,7 @@ router.post('/', function (req, res) {
                         'buttons': ['12시', '13시', '14시', '15시', '뒤로']
                     },
                     'message': {
-                        'text': bus_crawling_Router.univ_weekday_bus_time[5]
+                        'text': bus_time_array_Router.univ_weekday_bus_time[5]
                     }
                 }
             }
@@ -569,7 +569,7 @@ router.post('/', function (req, res) {
                         'buttons': ['12시', '13시', '14시', '15시', '뒤로']
                     },
                     'message': {
-                        'text': bus_crawling_Router.stat_weekday_bus_time[5]
+                        'text': bus_time_array_Router.stat_weekday_bus_time[5]
                     }
                 }
             }
@@ -580,7 +580,7 @@ router.post('/', function (req, res) {
                         'buttons': ['12시', '13시', '14시', '15시', '뒤로']
                     },
                     'message': {
-                        'text': bus_crawling_Router.univ_weekend_bus_time[5]
+                        'text': bus_time_array_Router.univ_weekend_bus_time[5]
                     }
                 }
             }
@@ -591,7 +591,7 @@ router.post('/', function (req, res) {
                         'buttons': ['12시', '13시', '14시', '15시', '뒤로']
                     },
                     'message': {
-                        'text': bus_crawling_Router.stat_weekend_bus_time[5]
+                        'text': bus_time_array_Router.stat_weekend_bus_time[5]
                     }
                 }
             }
@@ -605,7 +605,7 @@ router.post('/', function (req, res) {
                         'buttons': ['12시', '13시', '14시', '15시', '뒤로']
                     },
                     'message': {
-                        'text': bus_crawling_Router.univ_weekday_bus_time[6]
+                        'text': bus_time_array_Router.univ_weekday_bus_time[6]
                     }
                 }
             }
@@ -616,7 +616,7 @@ router.post('/', function (req, res) {
                         'buttons': ['12시', '13시', '14시', '15시', '뒤로']
                     },
                     'message': {
-                        'text': bus_crawling_Router.stat_weekday_bus_time[6]
+                        'text': bus_time_array_Router.stat_weekday_bus_time[6]
                     }
                 }
             }
@@ -627,7 +627,7 @@ router.post('/', function (req, res) {
                         'buttons': ['12시', '13시', '14시', '15시', '뒤로']
                     },
                     'message': {
-                        'text': bus_crawling_Router.univ_weekend_bus_time[6]
+                        'text': bus_time_array_Router.univ_weekend_bus_time[6]
                     }
                 }
             }
@@ -638,7 +638,7 @@ router.post('/', function (req, res) {
                         'buttons': ['12시', '13시', '14시', '15시', '뒤로']
                     },
                     'message': {
-                        'text': bus_crawling_Router.stat_weekend_bus_time[6]
+                        'text': bus_time_array_Router.stat_weekend_bus_time[6]
                     }
                 }
             }
@@ -652,7 +652,7 @@ router.post('/', function (req, res) {
                         'buttons': ['12시', '13시', '14시', '15시', '뒤로']
                     },
                     'message': {
-                        'text': bus_crawling_Router.univ_weekday_bus_time[7]
+                        'text': bus_time_array_Router.univ_weekday_bus_time[7]
                     }
                 }
             }
@@ -663,7 +663,7 @@ router.post('/', function (req, res) {
                         'buttons': ['12시', '13시', '14시', '15시', '뒤로']
                     },
                     'message': {
-                        'text': bus_crawling_Router.stat_weekday_bus_time[7]
+                        'text': bus_time_array_Router.stat_weekday_bus_time[7]
                     }
                 }
             }
@@ -674,7 +674,7 @@ router.post('/', function (req, res) {
                         'buttons': ['12시', '13시', '14시', '15시', '뒤로']
                     },
                     'message': {
-                        'text': bus_crawling_Router.univ_weekend_bus_time[7]
+                        'text': bus_time_array_Router.univ_weekend_bus_time[7]
                     }
                 }
             }
@@ -685,7 +685,7 @@ router.post('/', function (req, res) {
                         'buttons': ['12시', '13시', '14시', '15시', '뒤로']
                     },
                     'message': {
-                        'text': bus_crawling_Router.stat_weekend_bus_time[7]
+                        'text': bus_time_array_Router.stat_weekend_bus_time[7]
                     }
                 }
             }
@@ -699,7 +699,7 @@ router.post('/', function (req, res) {
                         'buttons': ['16시', '17시', '18시', '19시', '뒤로']
                     },
                     'message': {
-                        'text': bus_crawling_Router.univ_weekday_bus_time[8]
+                        'text': bus_time_array_Router.univ_weekday_bus_time[8]
                     }
                 }
             }
@@ -710,7 +710,7 @@ router.post('/', function (req, res) {
                         'buttons': ['16시', '17시', '18시', '19시', '뒤로']
                     },
                     'message': {
-                        'text': bus_crawling_Router.stat_weekday_bus_time[8]
+                        'text': bus_time_array_Router.stat_weekday_bus_time[8]
                     }
                 }
             }
@@ -721,7 +721,7 @@ router.post('/', function (req, res) {
                         'buttons': ['16시', '17시', '18시', '19시', '뒤로']
                     },
                     'message': {
-                        'text': bus_crawling_Router.univ_weekend_bus_time[8]
+                        'text': bus_time_array_Router.univ_weekend_bus_time[8]
                     }
                 }
             }
@@ -732,7 +732,7 @@ router.post('/', function (req, res) {
                         'buttons': ['16시', '17시', '18시', '19시', '뒤로']
                     },
                     'message': {
-                        'text': bus_crawling_Router.stat_weekend_bus_time[8]
+                        'text': bus_time_array_Router.stat_weekend_bus_time[8]
                     }
                 }
             }
@@ -746,7 +746,7 @@ router.post('/', function (req, res) {
                         'buttons': ['16시', '17시', '18시', '19시', '뒤로']
                     },
                     'message': {
-                        'text': bus_crawling_Router.univ_weekday_bus_time[9]
+                        'text': bus_time_array_Router.univ_weekday_bus_time[9]
                     }
                 }
             }
@@ -757,7 +757,7 @@ router.post('/', function (req, res) {
                         'buttons': ['16시', '17시', '18시', '19시', '뒤로']
                     },
                     'message': {
-                        'text': bus_crawling_Router.stat_weekday_bus_time[9]
+                        'text': bus_time_array_Router.stat_weekday_bus_time[9]
                     }
                 }
             }
@@ -768,7 +768,7 @@ router.post('/', function (req, res) {
                         'buttons': ['16시', '17시', '18시', '19시', '뒤로']
                     },
                     'message': {
-                        'text': bus_crawling_Router.univ_weekend_bus_time[9]
+                        'text': bus_time_array_Router.univ_weekend_bus_time[9]
                     }
                 }
             }
@@ -779,7 +779,7 @@ router.post('/', function (req, res) {
                         'buttons': ['16시', '17시', '18시', '19시', '뒤로']
                     },
                     'message': {
-                        'text': bus_crawling_Router.stat_weekend_bus_time[9]
+                        'text': bus_time_array_Router.stat_weekend_bus_time[9]
                     }
                 }
             }
@@ -793,7 +793,7 @@ router.post('/', function (req, res) {
                         'buttons': ['16시', '17시', '18시', '19시', '뒤로']
                     },
                     'message': {
-                        'text': bus_crawling_Router.univ_weekday_bus_time[10]
+                        'text': bus_time_array_Router.univ_weekday_bus_time[10]
                     }
                 }
             }
@@ -804,7 +804,7 @@ router.post('/', function (req, res) {
                         'buttons': ['16시', '17시', '18시', '19시', '뒤로']
                     },
                     'message': {
-                        'text': bus_crawling_Router.stat_weekday_bus_time[10]
+                        'text': bus_time_array_Router.stat_weekday_bus_time[10]
                     }
                 }
             }
@@ -815,7 +815,7 @@ router.post('/', function (req, res) {
                         'buttons': ['16시', '17시', '18시', '19시', '뒤로']
                     },
                     'message': {
-                        'text': bus_crawling_Router.univ_weekend_bus_time[10]
+                        'text': bus_time_array_Router.univ_weekend_bus_time[10]
                     }
                 }
             }
@@ -826,7 +826,7 @@ router.post('/', function (req, res) {
                         'buttons': ['16시', '17시', '18시', '19시', '뒤로']
                     },
                     'message': {
-                        'text': bus_crawling_Router.stat_weekend_bus_time[10]
+                        'text': bus_time_array_Router.stat_weekend_bus_time[10]
                     }
                 }
             }
@@ -840,7 +840,7 @@ router.post('/', function (req, res) {
                         'buttons': ['16시', '17시', '18시', '19시', '뒤로']
                     },
                     'message': {
-                        'text': bus_crawling_Router.univ_weekday_bus_time[11]
+                        'text': bus_time_array_Router.univ_weekday_bus_time[11]
                     }
                 }
             }
@@ -851,7 +851,7 @@ router.post('/', function (req, res) {
                         'buttons': ['16시', '17시', '18시', '19시', '뒤로']
                     },
                     'message': {
-                        'text': bus_crawling_Router.stat_weekday_bus_time[11]
+                        'text': bus_time_array_Router.stat_weekday_bus_time[11]
                     }
                 }
             }
@@ -862,7 +862,7 @@ router.post('/', function (req, res) {
                         'buttons': ['16시', '17시', '18시', '19시', '뒤로']
                     },
                     'message': {
-                        'text': bus_crawling_Router.univ_weekend_bus_time[11]
+                        'text': bus_time_array_Router.univ_weekend_bus_time[11]
                     }
                 }
             }
@@ -873,7 +873,7 @@ router.post('/', function (req, res) {
                         'buttons': ['16시', '17시', '18시', '19시', '뒤로']
                     },
                     'message': {
-                        'text': bus_crawling_Router.stat_weekend_bus_time[11]
+                        'text': bus_time_array_Router.stat_weekend_bus_time[11]
                     }
                 }
             }
@@ -887,7 +887,7 @@ router.post('/', function (req, res) {
                         'buttons': ['20시', '21시', '22시', '뒤로']
                     },
                     'message': {
-                        'text': bus_crawling_Router.univ_weekday_bus_time[12]
+                        'text': bus_time_array_Router.univ_weekday_bus_time[12]
                     }
                 }
             }
@@ -898,7 +898,7 @@ router.post('/', function (req, res) {
                         'buttons': ['20시', '21시', '22시', '뒤로']
                     },
                     'message': {
-                        'text': bus_crawling_Router.stat_weekday_bus_time[12]
+                        'text': bus_time_array_Router.stat_weekday_bus_time[12]
                     }
                 }
             }
@@ -909,7 +909,7 @@ router.post('/', function (req, res) {
                         'buttons': ['20시', '21시', '22시', '뒤로']
                     },
                     'message': {
-                        'text': bus_crawling_Router.univ_weekend_bus_time[12]
+                        'text': bus_time_array_Router.univ_weekend_bus_time[12]
                     }
                 }
             }
@@ -920,7 +920,7 @@ router.post('/', function (req, res) {
                         'buttons': ['20시', '21시', '22시', '뒤로']
                     },
                     'message': {
-                        'text': bus_crawling_Router.stat_weekend_bus_time[12]
+                        'text': bus_time_array_Router.stat_weekend_bus_time[12]
                     }
                 }
             }
@@ -934,7 +934,7 @@ router.post('/', function (req, res) {
                         'buttons': ['20시', '21시', '22시', '뒤로']
                     },
                     'message': {
-                        'text': bus_crawling_Router.univ_weekday_bus_time[13]
+                        'text': bus_time_array_Router.univ_weekday_bus_time[13]
                     }
                 }
             }
@@ -945,7 +945,7 @@ router.post('/', function (req, res) {
                         'buttons': ['20시', '21시', '22시', '뒤로']
                     },
                     'message': {
-                        'text': bus_crawling_Router.stat_weekday_bus_time[13]
+                        'text': bus_time_array_Router.stat_weekday_bus_time[13]
                     }
                 }
             }
@@ -956,7 +956,7 @@ router.post('/', function (req, res) {
                         'buttons': ['20시', '21시', '22시', '뒤로']
                     },
                     'message': {
-                        'text': bus_crawling_Router.univ_weekend_bus_time[13]
+                        'text': bus_time_array_Router.univ_weekend_bus_time[13]
                     }
                 }
             }
@@ -967,7 +967,7 @@ router.post('/', function (req, res) {
                         'buttons': ['20시', '21시', '22시', '뒤로']
                     },
                     'message': {
-                        'text': bus_crawling_Router.stat_weekend_bus_time[13]
+                        'text': bus_time_array_Router.stat_weekend_bus_time[13]
                     }
                 }
             }
@@ -981,7 +981,7 @@ router.post('/', function (req, res) {
                         'buttons': ['20시', '21시', '22시', '뒤로']
                     },
                     'message': {
-                        'text': bus_crawling_Router.univ_weekday_bus_time[14]
+                        'text': bus_time_array_Router.univ_weekday_bus_time[14]
                     }
                 }
             }
@@ -992,7 +992,7 @@ router.post('/', function (req, res) {
                         'buttons': ['20시', '21시', '22시', '뒤로']
                     },
                     'message': {
-                        'text': bus_crawling_Router.stat_weekday_bus_time[14]
+                        'text': bus_time_array_Router.stat_weekday_bus_time[14]
                     }
                 }
             }
@@ -1003,7 +1003,7 @@ router.post('/', function (req, res) {
                         'buttons': ['20시', '21시', '22시', '뒤로']
                     },
                     'message': {
-                        'text': bus_crawling_Router.univ_weekend_bus_time[14]
+                        'text': bus_time_array_Router.univ_weekend_bus_time[14]
                     }
                 }
             }
@@ -1014,7 +1014,7 @@ router.post('/', function (req, res) {
                         'buttons': ['20시', '21시', '22시', '뒤로']
                     },
                     'message': {
-                        'text': bus_crawling_Router.stat_weekend_bus_time[14]
+                        'text': bus_time_array_Router.stat_weekend_bus_time[14]
                     }
                 }
             }
