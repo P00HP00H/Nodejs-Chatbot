@@ -6,6 +6,8 @@ services:
   node:
     image: node:9
     command: bash -c "while true; do sleep 1000; done;"
+    environment:
+      - "TZ=Asia/Seoul"
     ports:
       - "4000:8000"
       - "4222:22"
