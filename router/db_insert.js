@@ -292,7 +292,7 @@ async function db_bus_time_weekend() {
     const bus_time_weekend4 = await bus_time_weekend(5)
 }
 
-bus_time.fetch = function() {
+bus_time.insert = function() {
     db_bus_time_weekday();
     db_bus_time_weekend();
 }
